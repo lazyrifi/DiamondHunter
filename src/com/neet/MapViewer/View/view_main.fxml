@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.layout.BorderPane?>
+
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" xmlns="http://javafx.com/javafx">
+   <center>
+      <Canvas fx:id="canvas_map" height="640.0" width="640.0" BorderPane.alignment="CENTER" />
+   </center>
+</BorderPane>
