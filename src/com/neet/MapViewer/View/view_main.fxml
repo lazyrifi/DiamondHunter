@@ -3,8 +3,7 @@
 <?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.layout.BorderPane?>
 
-
-<BorderPane xmlns:fx="http://javafx.com/fxml" xmlns="http://javafx.com/javafx">
+<BorderPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.neet.MapViewer.View.ViewController">
    <center>
       <Canvas fx:id="canvas_map" height="640.0" width="640.0" BorderPane.alignment="CENTER" />
    </center>

@@ -10,18 +10,18 @@ import javafx.stage.Stage;
 
 public class Main extends Application{
 	
-	private Stage primaryStage;
-	private Scene primaryScene;
+	private Stage mainStage;
+	private Scene mainScene;
 	
 	@Override
 	public void start(Stage args) throws Exception {
-		primaryStage = args;
-		primaryStage.setTitle("MapViewer");
+		mainStage = args;
+		mainStage.setTitle("MapViewer");
 		
 		initMainScene();
 		
-		primaryStage.setScene(primaryScene);
-		primaryStage.show();
+		mainStage.setScene(mainScene);
+		mainStage.show();
 	}
 	
 	
@@ -30,7 +30,7 @@ public class Main extends Application{
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class.getResource("View/view_main.fxml"));
 			BorderPane pane = (BorderPane) loader.load();
-			primaryScene = new Scene(pane);
+			mainScene = new Scene(pane);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
