@@ -25,6 +25,15 @@ public class ViewController {
 	@FXML
 	private Button button_setLocation;
 	
+	@FXML
+	private Button button_saveLocation;
+	
+	@FXML 
+	private Button button_zoomIn;
+	
+	@FXML 
+	private Button button_zoomOut;
+	
 	public ViewController() {
 		mapView = new MapView(16, "/Tilesets/testtileset.gif", "/Maps/testmap.map");
 	}
@@ -32,7 +41,6 @@ public class ViewController {
 	public void initialize() {
 		canvasG = canvas_map.getGraphicsContext2D();
 		mapView.drawMap(canvasG);
-		canvas_item.getGraphicsContext2D().fillRect(0, 0, 50, 50);
 	}
 	
 	public void OnSelectItem() {
@@ -43,4 +51,16 @@ public class ViewController {
 		
 	}
 	
-}
+	public void OnClickSaveLocation() {
+		
+	}
+	
+	public void OnClickZoomIn() {
+		
+	}
+	
+	public void OnClickZoomOut() {
+		
+	}
+	
+	}
