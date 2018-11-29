@@ -14,14 +14,14 @@
    <left>
       <Pane prefHeight="640.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <ButtonBar layoutX="10.0" layoutY="190.0" prefHeight="40.0" prefWidth="80.0">
+            <ButtonBar layoutX="10.0" layoutY="150.0" prefHeight="40.0" prefWidth="80.0">
                <buttons>
                   <RadioButton fx:id="radio_axe" minWidth="67.0" mnemonicParsing="false" onAction="#OnSelectItem" prefHeight="21.0" prefWidth="118.0" text="Axe" />
                   <RadioButton fx:id="radio_boat" minWidth="64.0" mnemonicParsing="false" onAction="#OnSelectItem" prefHeight="21.0" text="Boat" />
                </buttons>
             </ButtonBar>
-            <Canvas fx:id="canvas_item" height="100.0" layoutX="50.0" layoutY="60.0" width="100.0" />
-            <Button fx:id="button_setLocation" layoutX="20.0" layoutY="260.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#OnClickSetLocation" prefHeight="50.0" prefWidth="160.0" />
+            <Canvas fx:id="canvas_item" height="64.0" layoutX="68.0" layoutY="68.0" width="64.0" />
+            <Button fx:id="button_setLocation" layoutX="20.0" layoutY="198.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#OnClickSetLocation" prefHeight="50.0" prefWidth="160.0" />
             <Button fx:id="button_saveLocation" layoutX="20.0" layoutY="550.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#OnClickSaveLocation" prefHeight="50.0" prefWidth="160.0" text="Save Location" />
             <Button fx:id="button_zoomIn" layoutX="10.0" layoutY="475.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#OnClickZoomIn" prefHeight="30.0" prefWidth="90.0" text="Zoom In" />
             <Button fx:id="button_zoomOut" layoutX="105.0" layoutY="475.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#OnClickZoomOut" prefHeight="30.0" prefWidth="90.0" text="Zoom Out" />
