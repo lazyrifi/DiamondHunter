@@ -11,15 +11,15 @@ import javafx.scene.control.RadioButton;
 public class ViewController {
 	
 	private Map map;
+	private GraphicsContext canvasG;
 	
 	@FXML private Canvas canvas_map, canvas_item;
-	@FXML private GraphicsContext canvasG;
 	@FXML private RadioButton radio_axe, radio_boat;
 	@FXML private Button button_setLocation, button_saveLocation, button_zoomIn, button_zoomOut;
 	
 	
 	public ViewController() {
-		map = new Map(16, "/Tilesets/testtileset.gif", "/Maps/testmap.map");
+		map = new Map(16, "/Tilesets/testtileset.gif", "/Sprites/items.gif", "/Maps/testmap.map");
 	}
 	
 	public void initialize() {

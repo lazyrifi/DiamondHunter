@@ -20,15 +20,19 @@ public class Map {
 	private int MapHeight; // number of tiles along map
 	
 	private Image[] tiles;
+	private Image axe;
+	private Image boat;
 	private int[][] Map;
 	
 	
 	
-	public Map(int tileSize, String tilesLocation, String mapLocation) {
+	public Map(int tileSize, String tilesLocation, String itemsLocation, String mapLocation) {
 		this.tileSize = tileSize;
 		loadTiles(tilesLocation);
+		loadItems(itemsLocation);
 		loadMap(mapLocation);
 	}
+	
 	
 	private void loadTiles(String location) {
 		BufferedImage temp;
@@ -47,6 +51,19 @@ public class Map {
 					tilenum++;
 				}
 			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	private void loadItems(String location) {
+		BufferedImage items;
+		try {
+			items = ImageIO.read(getClass().getResourceAsStream(location));
+			
+			axe = SwingFXUtils.toFXImage(items.getSubimage(16, 16, tileSize, tileSize), null);
+			boat = SwingFXUtils.toFXImage(items.getSubimage(0, 16, tileSize, tileSize), null);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -77,6 +94,7 @@ public class Map {
 		}
 	}
 	
+	
 	public void drawMap(GraphicsContext g) {
 		for (int i=0; i<MapHeight; i++) {
 			for (int j=0; j<MapWidth; j++) {
@@ -84,5 +102,11 @@ public class Map {
 				g.drawImage(tile, j*tileSize, i*tileSize);
 			}
 		}
+	}
+	
+	
+	public void drawItem(GraphicsContext g, String item) {
+		if (item == "axe") g.drawImage(axe, 0, 0);
+		else g.drawImage(boat, 0, 0);
 	}
 }
