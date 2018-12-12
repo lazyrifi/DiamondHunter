@@ -1,6 +1,6 @@
 package com.neet.MapViewer.View;
 
-import com.neet.MapViewer.MapView;
+import com.neet.MapViewer.Map;
 
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
@@ -10,37 +10,21 @@ import javafx.scene.control.RadioButton;
 
 public class ViewController {
 	
-	private MapView mapView;
-	
-	@FXML
-	private Canvas canvas_map;
+	private Map map;
 	private GraphicsContext canvasG;
 	
-	@FXML 
-	private Canvas canvas_item;
+	@FXML private Canvas canvas_map, canvas_item;
+	@FXML private RadioButton radio_axe, radio_boat;
+	@FXML private Button button_setLocation, button_saveLocation, button_zoomIn, button_zoomOut;
 	
-	@FXML
-	private RadioButton radio_axe, radio_boat;
-	
-	@FXML
-	private Button button_setLocation;
-	
-	@FXML
-	private Button button_saveLocation;
-	
-	@FXML 
-	private Button button_zoomIn;
-	
-	@FXML 
-	private Button button_zoomOut;
 	
 	public ViewController() {
-		mapView = new MapView(16, "/Tilesets/testtileset.gif", "/Maps/testmap.map");
+		map = new Map(16, "/Tilesets/testtileset.gif", "/Sprites/items.gif", "/Maps/testmap.map");
 	}
 	
 	public void initialize() {
 		canvasG = canvas_map.getGraphicsContext2D();
-		mapView.drawMap(canvasG);
+		map.drawMap(canvasG);
 	}
 	
 	public void OnSelectItem() {
