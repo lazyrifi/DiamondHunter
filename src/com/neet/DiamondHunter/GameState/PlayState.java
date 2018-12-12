@@ -177,7 +177,7 @@ public class PlayState extends GameState {
 		Item item;
 		int x,y,a,b;
 		try {
-			BufferedReader br = new BufferedReader(new FileReader("Resources/locations.txt"));
+			BufferedReader br = new BufferedReader(new FileReader("itemLocations.txt"));
 			String[] tokens = br.readLine().split(" ");
 			x = Integer.parseInt(tokens[0]);
 			y = Integer.parseInt(tokens[1]);
