@@ -10,28 +10,28 @@ import com.neet.MapViewer.Map;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 public class ViewController {
 	
+	private int tileSize;
 	private Map map;
 	private GraphicsContext canvasG;
 	
 	@FXML private Canvas canvas_map;
 	@FXML private ImageView iv_item;
 	@FXML private RadioButton radio_axe, radio_boat;
-	@FXML private Button button_setLocation, button_saveLocation;
 	
-	private int tileSize;
 	
 	
 	public ViewController() {
 		tileSize = 16;
 		map = new Map(tileSize, "/Tilesets/testtileset.gif", "/Sprites/items.gif", "/Maps/testmap.map");
 	}
+	
+	
 	
 	public void initialize() {
 		canvasG = canvas_map.getGraphicsContext2D();
@@ -58,12 +58,22 @@ public class ViewController {
 		}
 	}
 	
+	
+	
+	private void UpdateMap() {
+		canvasG.drawImage(map.getMap(), 0, 0);
+	}
+	
+	
+	
 	public void OnSelectItem() {
 		if (radio_axe.isSelected()) {
 			iv_item.setImage(map.getItem(Map.AXE));
 		}
 		else iv_item.setImage(map.getItem(Map.BOAT));
 	}
+	
+	
 	
 	public void OnClickSetLocation(MouseEvent e) {
 		int x = (int) e.getX() / tileSize;
@@ -76,6 +86,8 @@ public class ViewController {
 		}
 		UpdateMap();
 	}
+	
+	
 	
 	public void OnClickSaveLocation() {
 		File file = new File("Resources/locations.txt");
@@ -94,7 +106,11 @@ public class ViewController {
 		}
 	}
 	
-	private void UpdateMap() {
-		canvasG.drawImage(map.getMap(), 0, 0);
+	
+	
+	public void OnClickDefault() {
+		map.setItem(Map.AXE, 37, 26);
+		map.setItem(Map.BOAT, 4, 12);
+		UpdateMap();
 	}
 }
