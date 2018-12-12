@@ -1,5 +1,10 @@
 package com.neet.MapViewer.View;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import com.neet.MapViewer.Map;
 
 import javafx.fxml.FXML;
@@ -15,7 +20,7 @@ public class ViewController {
 	
 	@FXML private Canvas canvas_map, canvas_item;
 	@FXML private RadioButton radio_axe, radio_boat;
-	@FXML private Button button_setLocation, button_saveLocation, button_zoomIn, button_zoomOut;
+	@FXML private Button button_setLocation, button_saveLocation;
 	
 	
 	public ViewController() {
@@ -36,15 +41,19 @@ public class ViewController {
 	}
 	
 	public void OnClickSaveLocation() {
-		
+		File file = new File("Resources/locations.txt");
+		try {
+			if(!file.exists()) {
+				file.createNewFile();
+			}
+			
+			PrintWriter writer;
+			writer = new PrintWriter(file);
+			writer.println(map.getAxeLocation());
+			writer.println(map.getBoatLocation());
+			writer.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
-	
-	public void OnClickZoomIn() {
-		
-	}
-	
-	public void OnClickZoomOut() {
-		
-	}
-	
-	}
+}

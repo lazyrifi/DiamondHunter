@@ -24,6 +24,11 @@ public class Map {
 	private Image boat;
 	private int[][] Map;
 	
+	private int AxeX;
+	private int AxeY;
+	private int BoatX;
+	private int BoatY;
+	
 	
 	
 	public Map(int tileSize, String tilesLocation, String itemsLocation, String mapLocation) {
@@ -31,6 +36,11 @@ public class Map {
 		loadTiles(tilesLocation);
 		loadItems(itemsLocation);
 		loadMap(mapLocation);
+		
+		AxeX = 20;
+		AxeY = 20;
+		BoatX = 19;
+		BoatY = 19;
 	}
 	
 	
@@ -108,5 +118,15 @@ public class Map {
 	public void drawItem(GraphicsContext g, String item) {
 		if (item == "axe") g.drawImage(axe, 0, 0);
 		else g.drawImage(boat, 0, 0);
+	}
+	
+	
+	public String getAxeLocation() {
+		return AxeX + " " + AxeY;
+	}
+	
+	
+	public String getBoatLocation() {
+		return BoatX + " " + BoatY;
 	}
 }
