@@ -33,7 +33,7 @@ public class ViewController {
 	
 	public void initialize() {
 		canvasG = canvas_map.getGraphicsContext2D();
-		map.drawMap(canvasG);
+		UpdateMap();
 	}
 	
 	public void OnSelectItem() {
@@ -66,5 +66,9 @@ public class ViewController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	private void UpdateMap() {
+		canvasG.drawImage(map.getMap(), 0, 0);
 	}
 }
