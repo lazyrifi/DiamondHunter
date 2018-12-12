@@ -5,6 +5,7 @@
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 
@@ -15,6 +16,7 @@
    <left>
       <Pane prefHeight="640.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
+            <ImageView fx:id="iv_item" fitHeight="64.0" fitWidth="64.0" layoutX="68.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true" />
             <ButtonBar layoutX="10.0" layoutY="150.0" prefHeight="40.0" prefWidth="80.0">
                <buttons>
                   <RadioButton fx:id="radio_axe" minWidth="67.0" mnemonicParsing="false" onAction="#OnSelectItem" prefHeight="21.0" prefWidth="118.0" selected="true" text="Axe">
@@ -25,7 +27,6 @@
                   <RadioButton fx:id="radio_boat" minWidth="64.0" mnemonicParsing="false" onAction="#OnSelectItem" prefHeight="21.0" text="Boat" toggleGroup="$itemGroup" />
                </buttons>
             </ButtonBar>
-            <Canvas fx:id="canvas_item" height="64.0" layoutX="68.0" layoutY="68.0" width="64.0" />
             <Button fx:id="button_saveLocation" layoutX="20.0" layoutY="550.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#OnClickSaveLocation" prefHeight="50.0" prefWidth="160.0" text="Save Location" />
          </children>
       </Pane>
