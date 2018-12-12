@@ -23,8 +23,10 @@ public class Map {
 	private BufferedImage[] tiles;
 	private BufferedImage axe;
 	private BufferedImage boat;
-	private int[][] Map;
+	private int[][] map;
+	
 	private BufferedImage mapImage;
+	private Graphics mapG;
 	
 	public static final int AXE = 0;
 	public static final int BOAT = 1;
@@ -95,13 +97,13 @@ public class Map {
 			MapWidth = Integer.parseInt(br.readLine());
 			MapHeight = Integer.parseInt(br.readLine());
 			
-			Map = new int[MapWidth][MapHeight];
+			map = new int[MapWidth][MapHeight];
 			
 			for (int i = 0; i < MapHeight; i++) {
 				String line = br.readLine();
 				String[] tokens = line.split("\\s+");
 				for (int j = 0; j < MapWidth; j++) {
-					Map[i][j] = Integer.parseInt(tokens[j]);
+					map[i][j] = Integer.parseInt(tokens[j]);
 				}
 				System.out.println();
 			}
@@ -113,10 +115,10 @@ public class Map {
 	
 	
 	public void drawMap() {
-		Graphics g = mapImage.getGraphics();
+		mapG = mapImage.getGraphics();
 		for (int i=0; i<MapWidth; i++) {
 			for (int j=0; j<MapHeight; j++) {
-				g.drawImage(tiles[Map[j][i]], i*tileSize, j*tileSize, null);
+				mapG.drawImage(tiles[map[j][i]], i*tileSize, j*tileSize, null);
 			}
 		}
 	}
@@ -151,12 +153,16 @@ public class Map {
 	public void setItem(int item, int x, int y) {
 		switch(item) {
 			case AXE:
+				mapG.drawImage(tiles[map[AxeY][AxeX]], AxeX*tileSize, AxeY*tileSize, null);
 				AxeX = x;
 				AxeY = y;
+				mapG.drawImage(axe, AxeX*tileSize, AxeY*tileSize, null);
 				break;
 			case BOAT:
+				mapG.drawImage(tiles[map[BoatY][BoatX]], BoatX*tileSize, BoatY*tileSize, null);
 				BoatX = x;
 				BoatY = y;
+				mapG.drawImage(boat, BoatX*tileSize, BoatY*tileSize, null);
 				break;
 		}
 	}
