@@ -35,24 +35,31 @@ public class ViewController {
 	
 	public void initialize() {
 		canvasG = canvas_map.getGraphicsContext2D();
-		UpdateMap();
 		OnSelectItem();
 		
 		try {
-			BufferedReader br = new BufferedReader(new FileReader("Resources/locations.txt"));
-			String[] tokens = br.readLine().split(" ");
-			int x = Integer.parseInt(tokens[0]);
-			int y = Integer.parseInt(tokens[1]);
-			
-			tokens = br.readLine().split(" ");
-			int a = Integer.parseInt(tokens[0]);
-			int b = Integer.parseInt(tokens[1]);
-			
-			map.setItem(Map.AXE, x, y);
-			map.setItem(Map.BOAT, a, b);
-			UpdateMap();
-			
-			br.close();
+			File file = new File("itemLocations.txt");
+			if (file.exists()) {
+				BufferedReader br = new BufferedReader(new FileReader(file));
+				String[] tokens = br.readLine().split(" ");
+				int x = Integer.parseInt(tokens[0]);
+				int y = Integer.parseInt(tokens[1]);
+				
+				tokens = br.readLine().split(" ");
+				int a = Integer.parseInt(tokens[0]);
+				int b = Integer.parseInt(tokens[1]);
+				
+				br.close();
+				
+				map.setItem(Map.AXE, x, y);
+				map.setItem(Map.BOAT, a, b);
+				UpdateMap();
+			}
+			else {
+				file.createNewFile();
+				OnClickDefault();
+				OnClickSaveLocation();
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -90,7 +97,7 @@ public class ViewController {
 	
 	
 	public void OnClickSaveLocation() {
-		File file = new File("Resources/locations.txt");
+		File file = new File("itemLocations.txt");
 		try {
 			if(!file.exists()) {
 				file.createNewFile();
