@@ -24,6 +24,9 @@ public class Map {
 	private Image boat;
 	private int[][] Map;
 	
+	public static final int AXE = 0;
+	public static final int BOAT = 1;
+	
 	private int AxeX;
 	private int AxeY;
 	private int BoatX;
@@ -128,5 +131,19 @@ public class Map {
 	
 	public String getBoatLocation() {
 		return BoatX + " " + BoatY;
+	}
+	
+	
+	public void setItem(int item, int x, int y) {
+		switch(item) {
+			case AXE:
+				AxeX = x;
+				AxeY = y;
+				break;
+			case BOAT:
+				BoatX = x;
+				BoatY = y;
+				break;
+		}
 	}
 }
