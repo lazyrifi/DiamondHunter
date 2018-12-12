@@ -1,5 +1,6 @@
 package com.neet.MapViewer;
 
+import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -19,10 +20,19 @@ public class Map {
 	private int MapWidth; // number of tiles across map
 	private int MapHeight; // number of tiles along map
 	
-	private Image[] tiles;
-	private Image axe;
-	private Image boat;
+	private BufferedImage[] tiles;
+	private BufferedImage axe;
+	private BufferedImage boat;
 	private int[][] Map;
+	private BufferedImage mapImage;
+	
+	public static final int AXE = 0;
+	public static final int BOAT = 1;
+	
+	private int AxeX;
+	private int AxeY;
+	private int BoatX;
+	private int BoatY;
 	
 	
 	
@@ -31,6 +41,14 @@ public class Map {
 		loadTiles(tilesLocation);
 		loadItems(itemsLocation);
 		loadMap(mapLocation);
+		
+		mapImage = new BufferedImage(MapWidth*tileSize, MapHeight*tileSize, BufferedImage.TYPE_INT_ARGB);
+		drawMap();
+		
+		AxeX = 20;
+		AxeY = 20;
+		BoatX = 19;
+		BoatY = 19;
 	}
 	
 	
@@ -41,13 +59,12 @@ public class Map {
 			
 			int numTilesAcross = temp.getWidth() / tileSize;
 			int numTilesAlong = temp.getHeight() / tileSize;
-			tiles = new Image[numTilesAcross * numTilesAlong];
+			tiles = new BufferedImage[numTilesAcross * numTilesAlong];
 			
 			int tilenum = 0;
 			for (int i = 0; i < numTilesAlong; i++) {
 				for (int j = 0; j < numTilesAcross; j++) {
-					Image tile = SwingFXUtils.toFXImage(temp.getSubimage(j*tileSize, i*tileSize, tileSize, tileSize), null);
-					tiles[tilenum] = tile;
+					tiles[tilenum] = temp.getSubimage(j*tileSize, i*tileSize, tileSize, tileSize);
 					tilenum++;
 				}
 			}
@@ -62,8 +79,8 @@ public class Map {
 		try {
 			items = ImageIO.read(getClass().getResourceAsStream(location));
 			
-			axe = SwingFXUtils.toFXImage(items.getSubimage(16, 16, tileSize, tileSize), null);
-			boat = SwingFXUtils.toFXImage(items.getSubimage(0, 16, tileSize, tileSize), null);
+			axe = items.getSubimage(16, 16, tileSize, tileSize);
+			boat = items.getSubimage(0, 16, tileSize, tileSize);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -95,18 +112,52 @@ public class Map {
 	}
 	
 	
-	public void drawMap(GraphicsContext g) {
-		for (int i=0; i<MapHeight; i++) {
-			for (int j=0; j<MapWidth; j++) {
-				Image tile = tiles[Map[i][j]];
-				g.drawImage(tile, j*tileSize, i*tileSize);
+	public void drawMap() {
+		Graphics g = mapImage.getGraphics();
+		for (int i=0; i<MapWidth; i++) {
+			for (int j=0; j<MapHeight; j++) {
+				g.drawImage(tiles[Map[j][i]], i*tileSize, j*tileSize, null);
 			}
 		}
 	}
 	
 	
-	public void drawItem(GraphicsContext g, String item) {
-		if (item == "axe") g.drawImage(axe, 0, 0);
-		else g.drawImage(boat, 0, 0);
+	public Image getMap() {
+		return SwingFXUtils.toFXImage(mapImage, null);
+	}
+	
+	
+	public Image getItem(int item) {
+		switch(item) {
+			case AXE:
+				return SwingFXUtils.toFXImage(axe, null);
+			case BOAT:
+				return SwingFXUtils.toFXImage(boat, null);
+		}
+		return null; 
+	}
+	
+	
+	public String getAxeLocation() {
+		return AxeX + " " + AxeY;
+	}
+	
+	
+	public String getBoatLocation() {
+		return BoatX + " " + BoatY;
+	}
+	
+	
+	public void setItem(int item, int x, int y) {
+		switch(item) {
+			case AXE:
+				AxeX = x;
+				AxeY = y;
+				break;
+			case BOAT:
+				BoatX = x;
+				BoatY = y;
+				break;
+		}
 	}
 }

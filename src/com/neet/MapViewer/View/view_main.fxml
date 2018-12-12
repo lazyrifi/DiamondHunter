@@ -4,27 +4,29 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 
 <BorderPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.neet.MapViewer.View.ViewController">
    <center>
-      <Canvas fx:id="canvas_map" height="640.0" width="640.0" BorderPane.alignment="CENTER" />
+      <Canvas fx:id="canvas_map" height="640.0" onMouseClicked="#OnClickSetLocation" width="640.0" BorderPane.alignment="CENTER" />
    </center>
    <left>
       <Pane prefHeight="640.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
             <ButtonBar layoutX="10.0" layoutY="150.0" prefHeight="40.0" prefWidth="80.0">
                <buttons>
-                  <RadioButton fx:id="radio_axe" minWidth="67.0" mnemonicParsing="false" onAction="#OnSelectItem" prefHeight="21.0" prefWidth="118.0" text="Axe" />
-                  <RadioButton fx:id="radio_boat" minWidth="64.0" mnemonicParsing="false" onAction="#OnSelectItem" prefHeight="21.0" text="Boat" />
+                  <RadioButton fx:id="radio_axe" minWidth="67.0" mnemonicParsing="false" onAction="#OnSelectItem" prefHeight="21.0" prefWidth="118.0" selected="true" text="Axe">
+                  	<toggleGroup>
+                  		<ToggleGroup fx:id="itemGroup" />
+                  	</toggleGroup>
+                  </RadioButton>
+                  <RadioButton fx:id="radio_boat" minWidth="64.0" mnemonicParsing="false" onAction="#OnSelectItem" prefHeight="21.0" text="Boat" toggleGroup="$itemGroup" />
                </buttons>
             </ButtonBar>
             <Canvas fx:id="canvas_item" height="64.0" layoutX="68.0" layoutY="68.0" width="64.0" />
-            <Button fx:id="button_setLocation" layoutX="20.0" layoutY="198.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#OnClickSetLocation" prefHeight="50.0" prefWidth="160.0" />
             <Button fx:id="button_saveLocation" layoutX="20.0" layoutY="550.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#OnClickSaveLocation" prefHeight="50.0" prefWidth="160.0" text="Save Location" />
-            <Button fx:id="button_zoomIn" layoutX="10.0" layoutY="475.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#OnClickZoomIn" prefHeight="30.0" prefWidth="90.0" text="Zoom In" />
-            <Button fx:id="button_zoomOut" layoutX="105.0" layoutY="475.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#OnClickZoomOut" prefHeight="30.0" prefWidth="90.0" text="Zoom Out" />
          </children>
       </Pane>
    </left>

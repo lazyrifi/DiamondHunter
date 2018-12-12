@@ -7,6 +7,8 @@ package com.neet.DiamondHunter.GameState;
 
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.ArrayList;
 
 import com.neet.DiamondHunter.Entity.Diamond;
@@ -173,15 +175,32 @@ public class PlayState extends GameState {
 	private void populateItems() {
 		
 		Item item;
+		int x,y,a,b;
+		try {
+			BufferedReader br = new BufferedReader(new FileReader("Resources/locations.txt"));
+			String[] tokens = br.readLine().split(" ");
+			x = Integer.parseInt(tokens[0]);
+			y = Integer.parseInt(tokens[1]);
+			
+			tokens = br.readLine().split(" ");
+			a = Integer.parseInt(tokens[0]);
+			b = Integer.parseInt(tokens[1]);
+		} catch (Exception e) {
+			x = 37;
+			y = 26;
+			a = 4;
+			b = 12;
+			e.printStackTrace();
+		}
 		
 		item = new Item(tileMap);
 		item.setType(Item.AXE);
-		item.setTilePosition(26, 37);
+		item.setTilePosition(y, x);
 		items.add(item);
 		
 		item = new Item(tileMap);
 		item.setType(Item.BOAT);
-		item.setTilePosition(12, 4);
+		item.setTilePosition(b, a);
 		items.add(item);
 		
 	}
