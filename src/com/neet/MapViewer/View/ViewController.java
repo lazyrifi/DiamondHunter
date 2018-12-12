@@ -1,8 +1,8 @@
 package com.neet.MapViewer.View;
 
+import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.FileReader;
 import java.io.PrintWriter;
 
 import com.neet.MapViewer.Map;
@@ -12,6 +12,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 public class ViewController {
@@ -19,7 +20,8 @@ public class ViewController {
 	private Map map;
 	private GraphicsContext canvasG;
 	
-	@FXML private Canvas canvas_map, canvas_item;
+	@FXML private Canvas canvas_map;
+	@FXML private ImageView iv_item;
 	@FXML private RadioButton radio_axe, radio_boat;
 	@FXML private Button button_setLocation, button_saveLocation;
 	
@@ -34,10 +36,33 @@ public class ViewController {
 	public void initialize() {
 		canvasG = canvas_map.getGraphicsContext2D();
 		UpdateMap();
+		OnSelectItem();
+		
+		try {
+			BufferedReader br = new BufferedReader(new FileReader("Resources/locations.txt"));
+			String[] tokens = br.readLine().split(" ");
+			int x = Integer.parseInt(tokens[0]);
+			int y = Integer.parseInt(tokens[1]);
+			
+			tokens = br.readLine().split(" ");
+			int a = Integer.parseInt(tokens[0]);
+			int b = Integer.parseInt(tokens[1]);
+			
+			map.setItem(Map.AXE, x, y);
+			map.setItem(Map.BOAT, a, b);
+			UpdateMap();
+			
+			br.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void OnSelectItem() {
-		
+		if (radio_axe.isSelected()) {
+			iv_item.setImage(map.getItem(Map.AXE));
+		}
+		else iv_item.setImage(map.getItem(Map.BOAT));
 	}
 	
 	public void OnClickSetLocation(MouseEvent e) {
@@ -49,6 +74,7 @@ public class ViewController {
 		else {
 			map.setItem(Map.BOAT, x, y);
 		}
+		UpdateMap();
 	}
 	
 	public void OnClickSaveLocation() {
