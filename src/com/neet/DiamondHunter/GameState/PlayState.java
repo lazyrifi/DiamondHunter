@@ -185,6 +185,8 @@ public class PlayState extends GameState {
 			tokens = br.readLine().split(" ");
 			a = Integer.parseInt(tokens[0]);
 			b = Integer.parseInt(tokens[1]);
+			
+			br.close();
 		} catch (Exception e) {
 			x = 37;
 			y = 26;
