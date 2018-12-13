@@ -40,9 +40,7 @@ public class Main extends Application{
 	 */
 	private void initMainScene() {
 		try {
-			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(Main.class.getResource("View/view_main.fxml"));
-			BorderPane pane = (BorderPane) loader.load();
+			BorderPane pane = FXMLLoader.load(Main.class.getResource("View/view_main.fxml"));
 			mainScene = new Scene(pane);
 		} catch (IOException e) {
 			e.printStackTrace();
