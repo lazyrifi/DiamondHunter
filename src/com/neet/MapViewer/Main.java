@@ -21,6 +21,7 @@ public class Main extends Application{
 	 * This method initializes the GUI window of the application, sets
 	 * a title and calls the method to initialize the GUI elements 
 	 * and their controller
+	 * @param args Launch parameters
 	 */
 	@Override
 	public void start(Stage args) throws Exception {
@@ -40,7 +41,9 @@ public class Main extends Application{
 	 */
 	private void initMainScene() {
 		try {
-			BorderPane pane = FXMLLoader.load(Main.class.getResource("View/view_main.fxml"));
+			BorderPane pane = FXMLLoader.load(
+					Main.class.getResource("View/view_main.fxml")	// load FXML file
+					);
 			mainScene = new Scene(pane);
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -50,7 +53,7 @@ public class Main extends Application{
 	
 	/**
 	 * Main method that launches the JavaFX application
-	 * @param args
+	 * @param args Launch parameters
 	 */
 	public static void main(String[] args) {
 		launch(args);
