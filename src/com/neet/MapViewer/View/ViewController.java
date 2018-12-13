@@ -94,7 +94,16 @@ public class ViewController {
 		}
 	}
 	
+	public void OnClickDefault() {
+		
+	}
+	
+	public void OnClickStartGame() {
+		
+	}
+	
 	private void UpdateMap() {
 		canvasG.drawImage(map.getMap(), 0, 0);
 	}
+	
 }
