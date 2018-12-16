@@ -37,6 +37,14 @@ public class Map {
 	
 	
 	
+	/**
+	 * Constructor that sets up the map.
+	 * Loads the tiles, map and item sprites and initializes the map image.
+	 * @param tileSize
+	 * @param tilesLocation
+	 * @param itemsLocation
+	 * @param mapLocation
+	 */
 	public Map(int tileSize, String tilesLocation, String itemsLocation, String mapLocation) {
 		this.tileSize = tileSize;
 		loadTiles(tilesLocation);
@@ -45,14 +53,14 @@ public class Map {
 		
 		mapImage = new BufferedImage(MapWidth*tileSize, MapHeight*tileSize, BufferedImage.TYPE_INT_ARGB);
 		drawMap();
-		
-		AxeX = 20;
-		AxeY = 20;
-		BoatX = 19;
-		BoatY = 19;
 	}
 	
 	
+	
+	/**
+	 * This method loads the tile sprites.
+	 * @param location Location of sprite image.
+	 */
 	private void loadTiles(String location) {
 		BufferedImage temp;
 		try {
@@ -75,6 +83,11 @@ public class Map {
 	}
 	
 	
+	
+	/**
+	 * This method loads the item sprites.
+	 * @param location Location of item sprites image.
+	 */
 	private void loadItems(String location) {
 		BufferedImage items;
 		try {
@@ -88,6 +101,11 @@ public class Map {
 	}
 
 	
+	
+	/**
+	 * This method loads the map numbers.
+	 * @param location Location of the map file.
+	 */
 	private void loadMap(String location) {
 		try {
 			InputStream in = getClass().getResourceAsStream(location);
@@ -113,6 +131,10 @@ public class Map {
 	}
 	
 	
+	
+	/**
+	 * This method draws the base map to an image.
+	 */
 	public void drawMap() {
 		mapG = mapImage.getGraphics();
 		for (int i=0; i<MapWidth; i++) {
@@ -123,11 +145,22 @@ public class Map {
 	}
 	
 	
+	
+	/**
+	 * This method returns the rendered image of the map.
+	 * @return Returns an image of the map.
+	 */
 	public Image getMap() {
 		return SwingFXUtils.toFXImage(mapImage, null);
 	}
 	
 	
+	
+	/**
+	 * This method returns an image of the axe or boat, depending on user selection.
+	 * @param item The item for which the sprite is wanted.
+	 * @return The sprite image for the item.
+	 */
 	public Image getItem(int item) {
 		switch(item) {
 			case AXE:
@@ -139,16 +172,33 @@ public class Map {
 	}
 	
 	
+	
+	/**
+	 * This method returns the location of the axe in string format.
+	 * @return String containing locations of axe.
+	 */
 	public String getAxeLocation() {
 		return AxeX + " " + AxeY;
 	}
 	
 	
+	
+	/**
+	 * This method returns the location of the boat in string format.
+	 * @return String containing locations of boat.
+	 */
 	public String getBoatLocation() {
 		return BoatX + " " + BoatY;
 	}
 	
 	
+	
+	/**
+	 * This method draws the item specified in a new location.
+	 * @param item The item to be drawn.
+	 * @param x The x-location of the item.
+	 * @param y The y-location of the item.
+	 */
 	public void setItem(int item, int x, int y) {
 		switch(item) {
 			case AXE:
@@ -169,6 +219,13 @@ public class Map {
 	}
 	
 	
+	
+	/**
+	 * This method checks if the specified tile is a normal or blocked tile.
+	 * @param x The x-location of the tile.
+	 * @param y	The y-location of the tile.
+	 * @return Boolean returns true if tile is normal.
+	 */
 	public boolean validTile(int x, int y) {
 		return map[y][x] < 20;
 	}
