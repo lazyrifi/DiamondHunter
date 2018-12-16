@@ -10,6 +10,8 @@ import com.neet.MapViewer.Map;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -38,7 +40,7 @@ public class ViewController {
 	private GraphicsContext canvasG;
 	
 	/**
-	 * Currently selected item;
+	 * Currently selected item
 	 */
 	private int selectedItem;
 	
@@ -47,7 +49,8 @@ public class ViewController {
 	@FXML private Canvas canvas_map;
 	@FXML private ImageView iv_item;
 	@FXML private RadioButton radio_axe, radio_boat;
-	
+	@FXML private CheckBox checkbox_allow;
+	@FXML private Label label_message;
 	
 	
 	
@@ -103,10 +106,12 @@ public class ViewController {
 	}
 	
 	
+	/**
+	 * This method refreshes the canvas.
+	 */
 	private void UpdateMap() {
 		canvasG.drawImage(map.getMap(), 0, 0);
 	}
-	
 	
 	
 	/**
@@ -121,18 +126,30 @@ public class ViewController {
 			iv_item.setImage(map.getItem(Map.BOAT));	// same for boat
 			selectedItem = Map.BOAT;					//
 		}
+		label_message.setText("Click on map to set new location of selected item.");
 	}
 
 
 	/**
 	 * This method sets the location of the currently selected item
-	 * to where the user clicks on the canvas
+	 * to where the user clicks on the canvas. If anywhere placement
+	 * is selected, the user can set location of item anywhere, even
+	 * trees. If not the user can only set location to normal tiles
 	 * @param e
 	 */
 	public void OnClickSetLocation(MouseEvent e) {
 		int x = (int) e.getX() / tileSize;	// get X and Y coordinates of where user clicked
 		int y = (int) e.getY() / tileSize;	// in terms of tile number
+		
+		if (!checkbox_allow.isSelected()) {
+			if (!map.validTile(x, y)) {
+				label_message.setText("Invalid location");
+				return;
+			}
+		}
+		
 		map.setItem(selectedItem, x, y);
+		label_message.setText(String.format("Set location to:\n[%d, %d]", x, y));
 		UpdateMap();
 	}
 	
@@ -157,24 +174,25 @@ public class ViewController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		label_message.setText("Saved locations!");
 	}
-  
-  
+
+	
+	/**
+	 * This method resets the positions of the axe and the boat to the in-game defaults.
+	 */
 	public void OnClickDefault() {
 		map.setItem(Map.AXE, 37, 26);
 		map.setItem(Map.BOAT, 4, 12);
 		UpdateMap();
-
-  
-	public void OnClickStartGame() {
-		
+		label_message.setText("Restored defaults!");
 	}
-	
+
 	
 	/**
-	 * This method refreshes the canvas.
+	 * This method starts Diamond Hunter from within the application
 	 */
-	private void UpdateMap() {
-	  canvasG.drawImage(map.getMap(), 0, 0);
+	public void OnClickStartGame() {
+		
 	}	
 }

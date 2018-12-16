@@ -163,6 +163,13 @@ public class Map {
 				BoatY = y;
 				mapG.drawImage(boat, BoatX*tileSize, BoatY*tileSize, null);
 				break;
+			default:
+				break;
 		}
+	}
+	
+	
+	public boolean validTile(int x, int y) {
+		return map[y][x] < 20;
 	}
 }
