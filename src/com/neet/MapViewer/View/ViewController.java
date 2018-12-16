@@ -147,12 +147,22 @@ public class ViewController {
 			e.printStackTrace();
 		}
 	}
+  
+  
+	public void OnClickDefault() {
+		
+	}
+	
+  
+	public void OnClickStartGame() {
+		
+	}
 	
 	
 	/**
 	 * This method refreshes the canvas.
 	 */
 	private void UpdateMap() {
-		canvasG.drawImage(map.getMap(), 0, 0);
-	}
+	  canvasG.drawImage(map.getMap(), 0, 0);
+	}	
 }
