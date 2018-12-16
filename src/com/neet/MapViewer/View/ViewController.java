@@ -15,24 +15,63 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
+/**
+ * This class represents the controller of the GUI elements
+ * and contain methods that run when the user interacts with
+ * the GUI.
+ */
 public class ViewController {
 	
+	/**
+	 * Size of a tile in Diamond Hunter in pixels
+	 */
+	private int tileSize;
+	
+	/**
+	 * Holds reference to a Map object 
+	 * which is the model class for the application
+	 */
 	private Map map;
+	
+	/**
+	 * Graphics object of the Canvas, used to draw map
+	 */
 	private GraphicsContext canvasG;
 	
+	/**
+	 * Currently selected item;
+	 */
+	private int selectedItem;
+	
+	
+	// Variables for the GUI elements, automatically injected by the FXMLLoader
 	@FXML private Canvas canvas_map;
 	@FXML private ImageView iv_item;
 	@FXML private RadioButton radio_axe, radio_boat;
 	@FXML private Button button_setLocation, button_saveLocation;
 	
-	private int tileSize;
 	
 	
+	
+	
+	/**
+	 * Creates and initializes the Map model object
+	 * by passing the locations of resources to it
+	 */
 	public ViewController() {
 		tileSize = 16;
 		map = new Map(tileSize, "/Tilesets/testtileset.gif", "/Sprites/items.gif", "/Maps/testmap.map");
 	}
 	
+	
+	/**
+	 * This method sets up GUI elements after they have been injected.
+	 * The Graphics object of the canvas is extracted and stored in 
+	 * {@link ViewController#canvasG}. The canvas is then updated to show 
+	 * the map. The Axe item is set as the default selected tool.
+	 * The application tries to automatically read the current locations of
+	 * the items stored in the locations file and update the map accordingly.
+	 */
 	public void initialize() {
 		canvasG = canvas_map.getGraphicsContext2D();
 		UpdateMap();
@@ -58,25 +97,40 @@ public class ViewController {
 		}
 	}
 	
+	
+	/**
+	 * This method is called when the user clicks on an item radio button.
+	 */
 	public void OnSelectItem() {
 		if (radio_axe.isSelected()) {
-			iv_item.setImage(map.getItem(Map.AXE));
-		}
-		else iv_item.setImage(map.getItem(Map.BOAT));
-	}
-	
-	public void OnClickSetLocation(MouseEvent e) {
-		int x = (int) e.getX() / tileSize;
-		int y = (int) e.getY() / tileSize;
-		if(radio_axe.isSelected()) {
-			map.setItem(Map.AXE, x, y);
+			iv_item.setImage(map.getItem(Map.AXE));		// sets image of currently selected item to Axe
+			selectedItem = Map.AXE;						// sets current item to axe
 		}
 		else {
-			map.setItem(Map.BOAT, x, y);
+			iv_item.setImage(map.getItem(Map.BOAT));	// same for boat
+			selectedItem = Map.BOAT;					//
 		}
+	}
+	
+	
+	/**
+	 * This method sets the location of the currently selected item
+	 * to where the user clicks on the canvas
+	 * @param e
+	 */
+	public void OnClickSetLocation(MouseEvent e) {
+		int x = (int) e.getX() / tileSize;	// get X and Y coordinates of where user clicked
+		int y = (int) e.getY() / tileSize;	// in terms of tile number
+		map.setItem(selectedItem, x, y);
 		UpdateMap();
 	}
 	
+	
+	/**
+	 * This method saves the location of the items set by the user.
+	 * If the user has not changed the location, the application
+	 * will save the locations as they were loaded. 
+	 */
 	public void OnClickSaveLocation() {
 		File file = new File("Resources/locations.txt");
 		try {
@@ -93,17 +147,22 @@ public class ViewController {
 			e.printStackTrace();
 		}
 	}
-	
+  
+  
 	public void OnClickDefault() {
 		
 	}
 	
+  
 	public void OnClickStartGame() {
 		
 	}
 	
-	private void UpdateMap() {
-		canvasG.drawImage(map.getMap(), 0, 0);
-	}
 	
+	/**
+	 * This method refreshes the canvas.
+	 */
+	private void UpdateMap() {
+	  canvasG.drawImage(map.getMap(), 0, 0);
+	}	
 }
