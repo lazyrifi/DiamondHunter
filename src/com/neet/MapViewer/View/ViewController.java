@@ -55,6 +55,8 @@ public class ViewController {
 	@FXML private Label label_message;
 	
 	
+	private String location;
+	
 	
 	
 	/**
@@ -64,6 +66,8 @@ public class ViewController {
 	public ViewController() {
 		tileSize = 16;
 		map = new Map(tileSize, "/Tilesets/testtileset.gif", "/Sprites/items.gif", "/Maps/testmap.map");
+		location = "bin/itemLocations.txt"; // for running from source code
+		//location = "itemLocations.txt"; // for JAR file
 	}
 	
 	
@@ -80,7 +84,7 @@ public class ViewController {
 		OnSelectItem();
 		
 		try {
-			File file = new File("itemLocations.txt");
+			File file = new File(location);
 			if (file.exists()) {
 				BufferedReader br = new BufferedReader(new FileReader(file));
 				String[] tokens = br.readLine().split(" ");
@@ -162,7 +166,7 @@ public class ViewController {
 	 * will save the locations as they were loaded. 
 	 */
 	public void OnClickSaveLocation() {
-		File file = new File("itemLocations.txt");
+		File file = new File(location);
 		try {
 			if(!file.exists()) {
 				file.createNewFile();
