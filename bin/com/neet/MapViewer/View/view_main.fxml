@@ -8,6 +8,7 @@
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.effect.Blend?>
+<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
@@ -18,7 +19,7 @@
       <Canvas fx:id="canvas_map" height="640.0" onMouseClicked="#OnClickSetLocation" width="640.0" BorderPane.alignment="CENTER" />
    </center>
    <left>
-      <Pane id="Panel" prefHeight="640.0" prefWidth="220.0" style="-fx-background-color: #40E0D0;" styleClass="darkList" BorderPane.alignment="CENTER">
+      <Pane id="Panel" prefHeight="640.0" prefWidth="220.0" style="-fx-background-color: #A4DEF9;" styleClass="darkList" BorderPane.alignment="CENTER">
          <children>
             <Pane layoutX="70.0" layoutY="109.0" prefHeight="80.0" prefWidth="80.0" style="-fx-border-width: 4; -fx-border-color: #2e7966; -fx-background-color: #FFDEAD;">
                <children>
@@ -41,19 +42,28 @@
                      </font></RadioButton>
                </buttons>
             </ButtonBar>
-            <Button layoutX="20.0" layoutY="490.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#OnClickSaveLocation" prefHeight="50.0" prefWidth="180.0" text="Save Locations" textFill="#2e7966">
-               <font>
-                  <Font name="Consolas Bold" size="18.0" />
-               </font></Button>
-            <Button contentDisplay="CENTER" layoutX="20.0" layoutY="396.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#OnClickDefault" prefHeight="50.0" prefWidth="180.0" text="Reset defaults" textAlignment="CENTER" textFill="#2e7966" wrapText="true">
+            <Button layoutX="20.0" layoutY="500.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#OnClickSaveLocation" prefHeight="50.0" prefWidth="180.0" style="-fx-background-radius: 5;" text="Save Locations" textFill="#2e7966">
                <font>
                   <Font name="Consolas Bold" size="18.0" />
                </font>
+               <effect>
+                  <InnerShadow choke="0.4" color="#30e423" />
+               </effect></Button>
+            <Button contentDisplay="CENTER" layoutX="20.0" layoutY="395.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#OnClickDefault" prefHeight="50.0" prefWidth="180.0" style="-fx-background-radius: 5;" text="Reset defaults" textAlignment="CENTER" textFill="#2e7966" wrapText="true">
+               <font>
+                  <Font name="Consolas Bold" size="18.0" />
+               </font>
+               <effect>
+                  <InnerShadow color="#e32424" />
+               </effect>
             </Button>
-            <Button layoutX="20.0" layoutY="557.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#OnClickStartGame" prefHeight="50.0" prefWidth="180.0" text="Start Game" textFill="#2e7966">
+            <Button layoutX="20.0" layoutY="560.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#OnClickStartGame" prefHeight="50.0" prefWidth="180.0" style="-fx-background-radius: 5;" text="Start Game" textFill="#2e7966">
                <font>
                   <Font name="Consolas Bold" size="18.0" />
                </font>
+               <effect>
+                  <InnerShadow choke="0.4" color="#30e423" />
+               </effect>
             </Button>
             <Label alignment="CENTER" layoutX="15.0" layoutY="20.0" text="Diamond Hunter" textAlignment="CENTER" textFill="#2e7966">
                <font>
@@ -65,14 +75,14 @@
                   <Font name="Comic Sans MS Bold Italic" size="25.0" />
                </font>
             </Label>
-            <Label fx:id="label_message" alignment="CENTER" layoutX="20.0" layoutY="308.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="72.0" prefWidth="180.0" style="-fx-background-color: #2e8986;" text="Place holder" textAlignment="CENTER" wrapText="true">
+            <Label fx:id="label_message" alignment="CENTER" layoutX="20.0" layoutY="307.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="72.0" prefWidth="180.0" style="-fx-background-color: #29d0d6;" textAlignment="CENTER" textFill="#1b5142" wrapText="true">
                <font>
                   <Font name="Consolas Bold" size="15.0" />
                </font>
             </Label>
-            <CheckBox fx:id="checkbox_allow" layoutX="20.0" layoutY="250.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="183.0" text="Allow placement on any tile" textFill="#2e7966" wrapText="true">
+            <CheckBox fx:id="checkbox_allow" layoutX="35.0" layoutY="243.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="151.0" text="Allow blocked tiles" textFill="#2e7966" wrapText="true">
                <font>
-                  <Font name="Consolas Bold" size="15.0" />
+                  <Font name="Consolas Bold" size="12.0" />
                </font>
             </CheckBox>
          </children>
