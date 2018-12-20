@@ -5,8 +5,10 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.PrintWriter;
 
+import com.neet.DiamondHunter.Main.Game;
 import com.neet.MapViewer.Map;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -193,6 +195,7 @@ public class ViewController {
 	 * This method starts Diamond Hunter from within the application
 	 */
 	public void OnClickStartGame() {
-		
+		Platform.exit();
+		Game.main(null);
 	}	
 }
