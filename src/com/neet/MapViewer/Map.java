@@ -16,24 +16,24 @@ import javafx.scene.image.Image;
 public class Map {
 	private int tileSize;
 	
-	private int MapWidth; // number of tiles across map
-	private int MapHeight; // number of tiles along map
+	private int MapWidth; 	// number of tiles across map
+	private int MapHeight;	// number of tiles along map
 	
-	private BufferedImage[] tiles;
-	private BufferedImage axe;
-	private BufferedImage boat;
-	private int[][] map;
+	private BufferedImage[] tiles;	// array of individual tiles
+	private BufferedImage axe;		// sprite for axe
+	private BufferedImage boat;		// sprite for boat
+	private int[][] map;			// 2-dimensional array of integers representing the tile number in the map
 	
-	private BufferedImage mapImage;
-	private Graphics mapG;
+	private BufferedImage mapImage;	// The map in image format
+	private Graphics mapG;			// Graphics object to modify the map image
 	
 	public static final int AXE = 0;
 	public static final int BOAT = 1;
 	
-	private int AxeX;
-	private int AxeY;
-	private int BoatX;
-	private int BoatY;
+	private int AxeX;	// x-location of axe
+	private int AxeY;	// y-location of axe
+	private int BoatX;	// x-location of boat
+	private int BoatY;	// y-location of boat
 	
 	
 	
